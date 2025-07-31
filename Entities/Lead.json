@@ -1,0 +1,113 @@
+{
+  "name": "Lead",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string",
+      "description": "Nome completo do cliente"
+    },
+    "whatsapp": {
+      "type": "string",
+      "description": "Número do WhatsApp"
+    },
+    "email_responsavel": {
+      "type": "string",
+      "description": "E-mail do usuário responsável pelo lead"
+    },
+    "procedimento_interesse": {
+      "type": "string",
+      "description": "Procedimento de interesse do cliente"
+    },
+    "valor_estimado": {
+      "type": "number",
+      "description": "Valor estimado do procedimento"
+    },
+    "observacoes": {
+      "type": "string",
+      "description": "Observações da IA sobre o lead"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "nova_conversa",
+        "lead_interessado",
+        "agendado",
+        "cancelou",
+        "reagendou",
+        "compareceu",
+        "vendeu_procedimento",
+        "relacionamento"
+      ],
+      "description": "Status atual do lead no pipeline"
+    },
+    "data_ultimo_contato": {
+      "type": "string",
+      "format": "date",
+      "description": "Data do último contato"
+    },
+    "prioridade": {
+      "type": "string",
+      "enum": [
+        "baixa",
+        "media",
+        "alta"
+      ],
+      "default": "media",
+      "description": "Nível de prioridade do lead"
+    },
+    "data_agendamento": {
+      "type": "string",
+      "format": "date",
+      "description": "Data do agendamento"
+    },
+    "origem": {
+      "type": "string",
+      "description": "Origem do lead"
+    },
+    "historico_atividades": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tipo": {
+            "type": "string",
+            "enum": [
+              "mudanca_status",
+              "observacao_manual"
+            ],
+            "description": "Tipo de atividade"
+          },
+          "data_hora": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Data e hora da atividade"
+          },
+          "status_anterior": {
+            "type": "string",
+            "description": "Status anterior (apenas para mudança de status)"
+          },
+          "status_novo": {
+            "type": "string",
+            "description": "Novo status (apenas para mudança de status)"
+          },
+          "observacao": {
+            "type": "string",
+            "description": "Observação manual do usuário"
+          },
+          "usuario": {
+            "type": "string",
+            "description": "Email do usuário que fez a alteração"
+          }
+        }
+      },
+      "default": [],
+      "description": "Histórico de atividades do lead"
+    }
+  },
+  "required": [
+    "nome",
+    "whatsapp",
+    "status",
+    "email_responsavel"
+  ]
+}
